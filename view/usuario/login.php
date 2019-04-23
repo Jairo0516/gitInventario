@@ -4,61 +4,30 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- CSS-->
-    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-    <title>Vali Admin</title>
   </head>
   <body>
-    <section class="material-half-bg">
-      <div class="cover"></div>
-    </section>
-    <section class="login-content">
-      <div class="logo">
-        <h1>Usuarios</h1>
-      </div>
-      <div class="login-box">
-        <form class="login-form" action="?c=usuario&a=Iniciar" method="POST">
-          <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Iniciar Sesion</h3>
-          <div class="form-group">
-            <label class="control-label">Usuario</label>
-            <input class="form-control" type="text" placeholder="Usuario" autofocus name="user">
-          </div>
-          <div class="form-group">
-            <label class="control-label">PASSWORD</label>
-            <input class="form-control" type="password" placeholder="Contraseña" autofocus name="password" >
-          </div>
-          <div class="form-group">
-            <div class="utility">
-              <div class="animated-checkbox">
-                <label class="semibold-text">
-                  <input type="checkbox"><span class="label-text">Stay Signed in</span>
-                </label>
-              </div>
-              <p class="semibold-text mb-0"><a data-toggle="flip">Forgot Password ?</a></p>
-            </div>
-          </div>
-          <div class="form-group btn-container">
-            <button class="btn btn-primary btn-block">Iniciar<i class="fa fa-sign-in fa-lg"></i></button>
-          </div>
-        </form>
-        <form class="forget-form" action="index.html">
-          <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3>
-          <div class="form-group">
-            <label class="control-label">EMAIL</label>
-            <input class="form-control" type="text" placeholder="Email">
-          </div>
-          <div class="form-group btn-container">
-            <button class="btn btn-primary btn-block">RESET<i class="fa fa-unlock fa-lg"></i></button>
-          </div>
-          <div class="form-group mt-20">
-            <p class="semibold-text mb-0"><a data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>
-          </div>
-        </form>
-      </div>
+
+    <section style="width: 100%;">
+        <center>
+
+            <form action="?c=usuario&a=Iniciar" method="POST">
+                <h3>Iniciar Sesión</h3>
+                <div>
+                    <label>Usuario:</label><br>
+                    <input  type="text" placeholder="Usuario"  name="user">
+                </div>
+                <div >
+                    <label >Contraseña:</label><br>
+                    <input  type="password" placeholder="Contraseña"  name="password" >
+                </div>
+
+                <div>
+                    <br>
+                    <button>Iniciar<i class="fa fa-sign-in fa-lg"></i></button>
+                </div>
+            </form>
+        </center>
     </section>
   </body>
-  <script src="assets/js/jquery-2.1.4.min.js"></script>
-  <script src="assets/js/bootstrap.min.js"></script>
-  <script src="assets/js/plugins/pace.min.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/jquery-3.2.1.min.js"></script>
 </html>

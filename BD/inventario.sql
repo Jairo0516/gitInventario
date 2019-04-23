@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
@@ -105,7 +105,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`usu_id`, `usu_user`, `usu_pwd`, `usu_nom`, `usu_ema`, `usu_fna`, `usu_rol`) VALUES
 (1, 'USER1', 'b714337aa8007c433329ef43c7b8252c', 'Administrador', 'administrador@correo.com', '2016-11-14', 1),
-(9, 'User2', 'b714337aa8007c433329ef43c7b8252c', 'USUARIO 2', 'user2@correo.com', '2019-04-01', 2),
+(9, 'User2', 'b714337aa8007c433329ef43c7b8252c', 'USUARIO 2', 'user2@correo.com', '2019-04-01', 1),
 (10, 'User3', 'b714337aa8007c433329ef43c7b8252c', 'USUARIO 3', 'user3@correo.com', '2019-04-01', 2);
 
 --

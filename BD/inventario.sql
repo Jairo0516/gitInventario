@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-04-2019 a las 09:14:25
+-- Tiempo de generación: 23-04-2019 a las 15:41:06
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
@@ -27,8 +27,6 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `goods`
 --
-CREATE DATABASE inventario;
-use inventario;
 
 CREATE TABLE `goods` (
   `pro_id` int(10) NOT NULL,
@@ -83,7 +81,7 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`rol_id`, `rol_nom`) VALUES
 (1, 'Administrador'),
-(2, 'Empleado');
+(2, 'Cliente');
 
 -- --------------------------------------------------------
 
@@ -149,7 +147,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `goods`
 --
 ALTER TABLE `goods`
-  MODIFY `pro_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `pro_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `goodsrelation`

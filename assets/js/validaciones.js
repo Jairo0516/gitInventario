@@ -4,3 +4,8 @@ function validationDelete($url,$title) {
         window.location.replace($url);
     }
 }
+if ($("#status").val()=='success'){
+    alert("EXITO");
+} else if($("#status").val()=='error'){
+    alert("ERROR");
+}

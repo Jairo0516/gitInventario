@@ -1,6 +1,6 @@
 
 <h2>Usuarios</h2>
-<table style="width: 80%;">
+<table>
     <thead>
         <tr>
             <td>ID</td>
@@ -9,6 +9,7 @@
             <td>Correo</td>
             <td>Fecha De Nacimiento</td>
             <td>Rol</td>
+            <td></td>
             <td></td>
         </tr>
     </thead>

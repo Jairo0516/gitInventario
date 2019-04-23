@@ -6,7 +6,7 @@ class Producto{
     private $name;
     private $value;
     private $description;
-
+    private $userIdName;
 
 
     public function __CONSTRUCT(){
@@ -24,6 +24,12 @@ class Producto{
         function getPro_id():?int{
         return $this->pro_id;
 
+    }
+    function setUserIdName(string $IdUserName){
+        $this->userIdName=$IdUserName;
+    }
+        function getUserIdName():?string{
+        return $this->userIdName;
     }
 
         function setPro_nom(string $nom){
@@ -52,7 +58,14 @@ class Producto{
 
     public function Listar(){
         try{
-        $consulta="SELECT pro_id,name,value,description FROM goods ";
+            if($_SESSION["rol"]==1){
+                $consulta="SELECT pro_id,name,value,description FROM goods ";
+            }else{
+                //CONSULTAMOS SOLO LOS QUE TIENE RELACIONADOS LA PERSONA
+                $consulta="SELECT goods.pro_id,name,value,description FROM goods 
+                             join goodsRelation on goodsRelation.pro_id=goods.pro_id";
+            }
+
         $sentencia=$this->pdo->prepare($consulta);
         $sentencia->execute();
         
@@ -83,7 +96,27 @@ class Producto{
         }
     }
 
+    public function ObtenerAsociacion($id){
+        try{
+
+
+        $consulta="SELECT * FROM goodsRelation 
+                    join usuarios on usuarios.usu_id=goodsRelation.user_id 
+                    join goods on goods.pro_id=goodsRelation.pro_id 
+                    WHERE goodsRelation.pro_id=?";
+        $sentencia=$this->pdo->prepare($consulta);
+        $sentencia->execute(array($id));
+
+
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+        }catch(Exception $e){
+            die($e->getMessager());
+        }
+    }
+
     public function Insertar(Producto $p){
+        $error="";
         try{
             $consulta="INSERT INTO goods (name,value, description) values (?,?,?);";
             $this->pdo->prepare($consulta)
@@ -95,11 +128,33 @@ class Producto{
                         )
                     );
         }catch(Exception $e){
-            die($e->getMessage());
+            $error=$e->getMessage();
         }
+        return  $error;
+    }
+    public function InsertarAsocia(Producto $p){
+        $error="";
+        try{
+
+            $userId=$p->getUserIdName();
+
+            $consulta="INSERT INTO goodsRelation (pro_id,user_id) values (?,?);";
+            $this->pdo->prepare($consulta)
+                    ->execute(
+                        array(
+                            $p->getPro_id(),
+                            $userId
+                        )
+                    );
+        }catch(Exception $e){
+            $error=$e->getMessage();
+        }
+
+        return $error;
     }
 
     public function Actualizar(Producto $p){
+        $error="";
         try{
             $consulta="UPDATE goods SET
                         name = ?,
@@ -117,13 +172,15 @@ class Producto{
                         )
                     );
         }catch(Exception $e){
-            die($e->getMessage());
+            $error=$e->getMessage();
         }
+        return $error;
     }
 
     public function Eliminar($id){
+        $error="";
         try{
-            $consulta="DELETE FROM good WHERE pro_id= ?;";
+            $consulta="DELETE FROM goods WHERE pro_id= ?;";
             $this->pdo->prepare($consulta)
                     ->execute(
                         array(
@@ -131,8 +188,9 @@ class Producto{
                         )
                     );
         }catch(Exception $e){
-            die($e->getMessage());
+            $error=$e->getMessage();
         }
+        return $error;
     }
 
 }

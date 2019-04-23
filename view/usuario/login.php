@@ -23,7 +23,7 @@
 
                 <div>
                     <br>
-                    <button>Iniciar<i class="fa fa-sign-in fa-lg"></i></button>
+                    <button>Iniciar</button>
                 </div>
             </form>
         </center>

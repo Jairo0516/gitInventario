@@ -1,6 +1,6 @@
 <?php
 require_once "model/producto.php";
-require_once "model/marca.php";//Modelo Marca
+require_once "model/usuario.php";//Modelo Uusrio
 
 class ProductoController{
     private $model;
@@ -24,7 +24,6 @@ class ProductoController{
             $p=new Producto();
             $titulo="Añadir Producto";
         }
-        $m=new Marca();
         require_once "view/header.php";
         require_once "view/producto/producto-form.php";
         require_once "view/footer.php";
@@ -41,20 +40,47 @@ class ProductoController{
 
         
         $producto->getPro_id() > 0 ?
-        $this->model->Actualizar($producto) : //if
-        $this->model->Insertar($producto);
+        $resultado=$this->model->Actualizar($producto) : $resultado=$this->model->Insertar($producto);
 
-        header("location: ?c=producto");
+        if(empty($resultado)){$resultado="success";}else{$resultado="error";}
+
+        header("location: ?c=producto&alert=".$resultado);
     }
-    //ASOCIAR PRODUCTO A PERSONA
-    public function Asociar(){
-
-    }
-
     public function Eliminar(){
         if(isset($_GET['id'])){
-            $this->model->Eliminar($_GET['id']);
-            header("location: ?c=producto");
+            $resultado=$this->model->Eliminar($_GET['id']);
+            if(empty($resultado)){$resultado="success";}else{$resultado="error";}
+
+
+            header("location: ?c=producto&alert=".$resultado);
         }
+    }
+
+    //ASOCIAR PRODUCTO A PERSONA VIEW
+    public function Asociar(){
+
+         $titulo = "Asociar";
+         $p=$this->model->Obtener($_GET['idProducto']);
+
+        $usuario =new Usuario();
+
+        require_once "view/header.php";
+        require_once "view/producto/asociar.php";
+        require_once "view/footer.php";
+    }//ASOCIAR PRODUCTO A PERSONA GUARDA
+    public function asociarGuarda(){
+
+        $producto=new Producto();
+
+
+        $producto->setPro_id(intval($_POST["ID"]));
+        $producto->setUserIdName($_POST["userId"]);
+
+        //RESULTADO PARA MOSTRAR ALERT
+        $resultado=$this->model->InsertarAsocia($producto);
+        if(empty($resultado)){$resultado="success";}else{$resultado="error";}
+
+
+        header("location: ?c=producto&alert=".$resultado);
     }
 }
